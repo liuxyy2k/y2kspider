@@ -58,12 +58,7 @@ var index_config_default = {
   },
   tgchannel: {},
   sites: {
-    list: [
-      {
-        name: "AVdb",
-        address: "https://avdbapi.com/api.php/provide/vod/"
-      }
-    ]
+    list: []
   },
   pans: {
     list: []
@@ -73,7 +68,12 @@ var index_config_default = {
     autoPush: true
   },
   t4: {
-    list: []
+    list: [
+      {
+        name: "AVdb",
+        address: "https://avdbapi.com/api.php/provide/vod/"
+      }
+    ]
   },
   cms: {
     list: []
