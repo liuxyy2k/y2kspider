@@ -71,7 +71,7 @@ var index_config_default = {
     list: [
       {
         name: "AVdb",
-        address: "https://avdbapi.com/api.php/provide/vod/"
+        address: "https://avdbapi.com/api.php/provide1/vod/"
       }
     ]
   },
