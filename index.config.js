@@ -92,6 +92,14 @@ var index_config_default = {
       {
         name: "🔞91视频|AV",
         address: "https://91av.cyou/api.php/provide/vod/"
+      },
+      {
+        name: "🔞小丝袜",
+        address: "https://www.siwazyw.tv/api.php/provide/vod/at/json"
+      },
+      {
+        name: "🔞湿园",
+        address: "https://xxavs.com/api.php/provide/vod/at/json"
       }
     ]
   },
