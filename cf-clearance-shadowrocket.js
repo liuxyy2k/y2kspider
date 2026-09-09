@@ -8,7 +8,7 @@
 // - http-response 检测分支：响应命中 challenge → 清缓存 + 通知用户重新过盾
 
 var CF = {};
-CF.VERSION = '1.2.0';
+CF.VERSION = '1.3.0-SR-DEBUG';
 
 CF.CONFIG = {
   STORE_PREFIX: 'cf_clearance_',
@@ -21,6 +21,9 @@ CF.CONFIG = {
   // 目标站的 403/503 直接视为 CF challenge。
   CHALLENGE_STATUS: [403, 503],
   NOTIFY_TITLE: 'CF 盾',
+  // Shadowrocket 调试：只在关键节点通知，避免每个请求刷屏。
+  DEBUG: true,
+  DEBUG_THROTTLE_MS: 15000,
   // challenge 后保护窗口：新 cookie 在该时长内刚入库时，不清缓存。
   // 防止过盾后刚存的新 token 被仍在路上的旧 403 响应反复 clearCookie 清掉，
   // 导致注入分支读不到 cookie 而持续裸奔 403（只有重启 App 才恢复）。
@@ -117,7 +120,7 @@ CF.CONFIG = {
     // （删掉则 400/拒绝）时启用；无需时可整行删除。
     'x-requested-with'
   ],
-  // UA 兜底（$loon 取不到系统版本时）
+  // UA 兜底（Shadowrocket 环境无法读取系统版本时）
   FALLBACK_UA_VERSION: '17_0',
   FALLBACK_UA_VERSION_DOTTED: '17.0'
 };
@@ -409,6 +412,24 @@ CF.notify = function (subtitle, content, attach) {
   } catch (e) { /* 通知失败不影响主流程 */ }
 };
 
+// ============ Shadowrocket 调试 ============
+CF.debugNotify = function (domain, subtitle, content) {
+  if (!CF.CONFIG.DEBUG) return;
+  try {
+    var key = 'cf_debug_' + domain.replace(/\./g, '_');
+    var now = Date.now();
+    var last = parseInt($persistentStore.read(key) || '0', 10) || 0;
+    if (now - last < CF.CONFIG.DEBUG_THROTTLE_MS) return;
+    $persistentStore.write(String(now), key);
+    CF.notify(subtitle, content);
+  } catch (e) {}
+};
+
+CF.short = function (value, n) {
+  value = String(value || '');
+  return value.length <= n ? value : value.slice(0, n) + '...';
+};
+
 // ============ 请求分支：学习 + 注入 ============
 
 // 构建一份「干净的 Safari 导航」请求头。仅注入分支使用 —— 针对第三方 App 的脏请求，
@@ -539,6 +560,11 @@ CF.handleRequest = function (domain) {
         // 存储失败：通知用户，否则注入分支一直拿不到 token（静默失败隐患）
         CF.notify(domain + ' 存储失败', 'cf_clearance 未能写入持久化存储，请检查存储空间');
       }
+      if (saved) {
+        CF.debugNotify(domain, '学习成功 ' + domain,
+          'cf_clearance=' + CF.short(existing, 18) + '\nUA=' + CF.short(uaHeader, 70) +
+          '\nCookie长度=' + String((cookieHeader || '').length));
+      }
     } else {
       // 完全未变，仅更新时间戳（刷新保护窗口），不重写存储
       prev.savedAt = Date.now();
@@ -556,7 +582,7 @@ CF.handleRequest = function (domain) {
   // 从空对象起按白名单重建一份干净的 Safari 导航头：Cookie 全量覆盖为缓存值
   // （含 cf_clearance + 过盾时的其他 cookie），UA 用存储的 Safari UA 覆盖，
   // 其余浏览器头强制为 Safari 标准值。原理：cf_clearance 绑定「过盾时的 UA + IP」，
-  // Loon 重写整个请求头让 CF 看到 Safari 身份从而放行；其余 cookie 一并复用，
+  // Shadowrocket 重写整个请求头让 CF 看到 Safari 身份从而放行；其余 cookie 一并复用，
   // 让第三方 App 拿到过盾时的完整身份。
   var cached = CF.loadCookie(domain);
   if (!cached || !cached.cf_clearance) {
@@ -577,7 +603,7 @@ CF.handleRequest = function (domain) {
   // 与学习分支共用，确保两个分支输出的头都是干净的 Safari 导航头。
   // 此分支通过 overrides 把 Cookie/UA 覆盖成缓存值，让 CF 看到过盾时的身份。
   // UA 兜底链：缓存 UA（过盾时 ground truth）→ 请求头 UA → buildSafariUA 动态构造
-  // （$loon 设备版本）。前两者都缺失时才构造 —— 此时学习分支从未捕获过该域，
+  // （Shadowrocket 无需依赖 $loon 设备版本）。前两者都缺失时才构造 —— 此时学习分支从未捕获过该域，
   // 但缓存里可能有旧格式 token；构造 Safari UA 至少让指纹接近真实浏览器。
   var fallbackUA = '';
   if (!cached.ua) {
@@ -585,10 +611,17 @@ CF.handleRequest = function (domain) {
       fallbackUA = CF.buildSafariUA().ua;
     } catch (e) { fallbackUA = ''; }
   }
+  var injectCookie = cached.cookies || ('cf_clearance=' + cached.cf_clearance);
+  var injectUA = cached.ua || uaHeader || fallbackUA;
   var injectHeaders = CF.buildCleanHeaders(req, {
-    cookie: cached.cookies || ('cf_clearance=' + cached.cf_clearance),
-    ua: cached.ua || uaHeader || fallbackUA
+    cookie: injectCookie,
+    ua: injectUA
   });
+  CF.debugNotify(domain, '注入成功 ' + domain,
+    '已注入 cf_clearance=' + CF.short(cached.cf_clearance, 18) +
+    '\nUA=' + CF.short(injectUA, 70) +
+    '\nCookie长度=' + String(injectCookie.length) +
+    '\n原UA=' + CF.short(uaHeader, 50));
   $done({ headers: injectHeaders });
 };
 
@@ -601,6 +634,9 @@ CF.handleRequest = function (domain) {
 CF.handleResponse = function (domain) {
   // $response.status 可能是数字、字符串，甚至 "403 Forbidden" 完整状态行
   var status = parseInt($response && $response.status, 10) || 0;
+
+  CF.debugNotify(domain, '响应状态 ' + domain,
+    'HTTP ' + String(status) + (CF.isChallenge(status) ? '（疑似CF challenge）' : ''));
 
   if (CF.isChallenge(status)) {
     // 保护窗口：新 cookie 刚入库（窗口内）不清，避免与旧 403 响应竞态把新 token 清掉。
@@ -620,7 +656,7 @@ CF.handleResponse = function (domain) {
       var host = CF.hostFromUrl($request && $request.url) || domain;
       var openUrl = ($request && $request.url) || ('https://' + host + '/');
       CF.notify('CF 盾失效 ' + host,
-        '检测到 challenge，点击此处用 Safari 重新过盾，Loon 将自动捕获新 cookie',
+        '检测到 challenge，点击此处用 Safari 重新过盾，Shadowrocket 将自动捕获新 cookie',
         openUrl);
     }
   }
