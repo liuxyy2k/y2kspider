@@ -23,250 +23,67 @@ __export(index_config_exports, {
 });
 module.exports = __toCommonJS(index_config_exports);
 var index_config_default = {
-  // 后端(alist-tvbox)网盘解析:盘搜系爬虫把网盘线路转文件夹集列表用
-  atv_pan: {
-    api: "ATV_API_URL",
-    token: "ATV_TOKEN"
-  },
-  atv_media: {
-    url: "ATV_MEDIA_URL",
-    play: "ATV_MEDIA_PLAY_URL"
-  },
-  atv_pansou: {
-    url: "ATV_PANSOU_URL",
-    play: "ATV_PANSOU_PLAY_URL"
-  },
-  atv_pansou_group: {
-    url: "ATV_PANSOU_GROUP_URL",
-    play: "ATV_PANSOU_GROUP_PLAY_URL"
-  },
-  atv_feiniu: {
-    url: "ATV_FEINIU_URL",
-    play: "ATV_FEINIU_PLAY_URL"
-  },
-  atv_emby: {
-    url: "ATV_EMBY_URL",
-    play: "ATV_EMBY_PLAY_URL"
-  },
-  atv_jellyfin: {
-    url: "ATV_JELLYFIN_URL",
-    play: "ATV_JELLYFIN_PLAY_URL"
-  },
-  atv_tgsc: {
-    url: "ATV_TGSC_URL",
-    play: "ATV_TGSC_PLAY_URL"
-  },
-  atv_tg_db: {
-    url: "ATV_TG_DB_URL",
-    play: "ATV_TG_DB_PLAY_URL"
-  },
-  atv_tg_search: {
-    url: "ATV_TG_SEARCH_URL",
-    play: "ATV_TG_SEARCH_PLAY_URL"
-  },
-  atv_tg_web: {
-    url: "ATV_TG_WEB_URL",
-    play: "ATV_TG_WEB_PLAY_URL"
-  },
-  atv_pian_dan: {
-    url: "ATV_PIAN_DAN_URL"
-  },
-  atv_live: {
-    url: "ATV_LIVE_URL"
-  },
-  xiaoya_alist: {
-    url: "VOD_URL"
-  },
-  xiaoya_tv: {
-    url: "VOD1_URL"
-  },
-  bilibili: {
-    url: "BILIBILI_URL"
-  },
-  youtube: {
-    url: "YOUTUBE_URL"
-  },
-  emby: {
-    url: "EMBY_URL"
-  },
-  kunyu77: {
-    testcfg: {
-      bbbb: "aaaaa"
-    }
-  },
   ali: {
-    token: "ALI_TOKEN",
-    token280: "ALI_OPEN_TOKEN"
-  },
-  tudou: {
-    url: "https://tudou.lvdoui.top/"
-  },
-  wobg: {
-    url: "http://wobgg.run-us-west2.goorm.io/"
-  },
-  xxpan: {
-    url: "https://xpanpan.site"
-  },
-  ikanbot: {
-    url: "https://www.aikanbot.com"
-  },
-  czzy: {
-    url: "https://cz01.vip"
-  },
-  libvio: {
-    url: "https://libvio.app"
-  },
-  yiso: {
-    url: "https://yiso.fun",
-    cookie: "填入yiso网站的cookie即可"
-  },
-  bili: {
-    categories: "经典无损音乐合集#帕梅拉#太极拳#健身#舞蹈#音乐#歌曲#MV4K#演唱会4K#白噪音4K#知名UP主#说案#解说#演讲#时事#探索发现超清#纪录片超清#沙雕动画#沙雕穿越#沙雕#平面设计教学#软件教程#实用教程#旅游#风景4K#食谱#美食超清#搞笑#球星#动物世界超清#相声小品#戏曲#儿童#小姐姐4K#热门#旅行探险",
-    cookie: "i-wanna-go-back=-1; buvid_fp_plain=undefined; DedeUserID=478180530; DedeUserID__ckMd5=5a17664f2928ee52; CURRENT_PID=c4058970-cd48-11ed-aced-73b3be32a7d1; FEED_LIVE_VERSION=V8; LIVE_BUVID=AUTO2416818085516679; hit-new-style-dyn=1; buvid3=8844974D-7607-AB71-D7CB-D6E2348D76F386916infoc; b_nut=1691283886; _uuid=6F312895-AC8B-C29C-BA57-414B10CA1DE8362943infoc; b_ut=5; buvid4=DB73880F-3A34-BBA2-378A-2E4A2AF5DE1A57570-022080609-cABoSJjJ1wOrHk0uSjaqIN6xh09U8%2F1PixLX7T8Ps8WYIbYWdgNygA%3D%3D; enable_web_push=DISABLE; header_theme_version=CLOSE; is-2022-channel=1; CURRENT_QUALITY=80; rpdid=0zbfvRWVXD|14p7j3lyk|2N|3w1RhEJN; fingerprint=4345b53c4198e545925156bacc2a6551; buvid_fp=4345b53c4198e545925156bacc2a6551; CURRENT_FNVAL=4048; PVID=2; SESSDATA=482eb259%2C1726126475%2Cdede1%2A31CjCd2urT2b_iWY19GhWIcBH8RzjNoIPT-mrZK7vUuw4tTPjaUV9sMl3I2h3Q7HXIEQMSVmtYMlpQM2padHlwX2dxZzAzeEpGUzY3V2VSSFh0cTZsYjFwbFFmRVo5ZHVsdFlQNXhnY2t6TWphQjQyZEFkVWNWX1RDd2VsM2lMZ2ZHMklqc2JBaENnIIEC; bili_jct=5274f857b71ea036cb1c018bd25b9e19; b_lsid=B9CE10CA9_18E4A14E74E; bp_video_offset_478180530=909660681607839745; home_feed_column=5; browser_resolution=1872-932; sid=4umjjnj6; bili_ticket=eyJhbGciOiJIUzI1NiIsImtpZCI6InMwMyIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTA4OTkyNzQsImlhdCI6MTcxMDY0MDAxNCwicGx0IjotMX0.q5af7Y2NPG7Oq4JedXOjJxtfxPD9cmV7lTcmE6PyimQ; bili_ticket_expires=1710899214"
-  },
-  ttkx: {
-    url: "http://www.kxys.site:3328"
-  },
-  live: {
-    contents: "https://gitee.com/galnt/cctv/raw/master/contents.txt",
-    // 按省区分的目录,供参考,可以不添加
-    url: [
-      { name: "范明明 ", url: "https://live.fanmingming.com/tv/m3u/ipv6.m3u", index: "true" },
-      {
-        name: "肥羊精选 ",
-        url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/SXYD.m3u",
-        index: "true"
-      },
-      { name: "优质源 ", url: "https://raw.gitmirror.com/wwb521/live/main/tv.txt", index: "true" },
-      {
-        name: "M3U源 ",
-        url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/wwb521/live/main/tv.m3u",
-        index: "false"
-      },
-      { name: "ITV ", url: "https://mirror.ghproxy.com/raw.githubusercontent.com/ssili126/tv/main/itvlist.txt" },
-      { name: "道长源 ", "url": "https://mirror.ghproxy.com/raw.githubusercontent.com/dxawi/0/main/tvlive.txt" },
-      { name: "俊于源 ", "url": "http://home.jundie.top:81/Cat/tv/live.txt" },
-      { name: "普通源 ", url: "https://gitee.com/zhuyuxian/cyys/raw/master/live20220813.txt", index: "false" }
-    ]
+    token: "",
+    token280: "token280"
   },
   quark: {
-    cookie: "QUARK_COOKIE"
+    cookie: ""
   },
-  ysche: {
-    url: "https://www.weixine.link"
+  uc: {
+    cookie: "cookie",
+    token: "token",
+    ut: "ut"
   },
-  vcm3u8: {
-    ffm3u8: [{
-      name: "非凡采集",
-      url: "https://cj.ffzyapi.com/api.php/provide/vod/from/ffm3u8/",
-      categories: ["国产剧", "香港剧", "韩国剧", "欧美剧", "台湾剧", "日本剧", "海外剧", "泰国剧", "短剧", "动作片", "喜剧片", "爱情片", "科幻片", "恐怖片", "剧情片", "战争片", "动漫片", "大陆综艺", "港台综艺", "日韩综艺", "欧美综艺", "国产动漫", "日韩动漫", "欧美动漫", "港台动漫", "海外动漫", "记录片"],
-      search: true
-    }],
-    hhm3u8: [{
-      name: "火狐采集",
-      url: "https://hhzyapi.com/api.php/provide/vod/from/hhm3u8/",
-      categories: ["动作片", "爱情片", "喜剧片", "科幻片", "恐怖片", "剧情片", "战争片", "灾难片", "悬疑片", "犯罪片", "奇幻片", "短剧", "内地剧", "欧美剧", "香港剧", "韩剧", "日剧", "马泰剧", "中国动漫", "日本动漫", "欧美动漫", "欧美动漫", "大陆综艺", "港台综艺", "日韩综艺", "欧美综艺", "记录片"],
-      search: true
-    }],
-    lzm3u8: [{
-      name: "量子采集",
-      url: "https://cj.lziapi.com/api.php/provide/vod/from/lzm3u8/",
-      categories: ["动作片", "爱情片", "喜剧片", "科幻片", "恐怖片", "剧情片", "战争片", "短剧", "国产剧", "欧美剧", "香港剧", "韩国剧", "日本剧", "台湾剧", "海外剧", "泰国剧", "国产动漫", "日韩动漫", "欧美动漫", "港台动漫", "海外动漫", "大陆综艺", "港台综艺", "日韩综艺", "欧美综艺", "记录片", "足球", "篮球", "网球", "斯诺克"],
-      search: true
-    }],
-    subm3u8: [{
-      name: "速播采集",
-      url: "https://subocaiji.com/api.php/provide/vod/from/subm3u8/",
-      categories: ["动作片", "爱情片", "喜剧片", "科幻片", "恐怖片", "剧情片", "战争片", "动漫电影", "短剧", "大陆剧", "美剧", "港澳剧", "韩剧", "日剧", "台湾剧", "泰剧", "中国动漫", "日本动漫", "欧美动漫", "综艺", "纪录片"],
-      search: true
-    }],
-    lsm3u8: [{
-      name: "乐视采集",
-      url: "https://leshizyapi.com/api.php/provide/vod",
-      categories: ["动作片", "爱情片", "喜剧片", "科幻片", "恐怖片", "剧情片", "战争片", "犯罪片", "奇幻片", "灾难片", "悬疑片", "动画片", "短剧", "国产剧", "欧美剧", "香港剧", "韩国剧", "日剧", "台湾剧", "海外剧", "泰国剧", "国产动漫", "日本动漫", "欧美动漫", "海外动漫", "大陆综艺", "港台综艺", "日韩综艺", "欧美综艺", "纪录片"],
-      search: true
-    }],
-    baidu: [{
-      name: "百度采集",
-      url: "https://api.apibdzy.com/api.php/provide/vod/from/dbm3u8/",
-      categories: ["动作片", "喜剧片", "爱情片", "科幻片", "恐怖片", "剧情片", "战争片", "国产剧", "欧美剧", "韩剧", "日剧", "港剧", "台剧", "泰剧", "海外剧", "纪录片", "大陆综艺", "日韩综艺", "港台综艺", "欧美综艺", "国产动漫", "日韩动漫", "欧美动漫", "动画片", "港台动漫", "海外动漫", "悬疑片", "邵氏电影", "电影资讯", "明星资讯", "预告片"],
-      search: true
-    }],
-    hnm3u8: [{
-      name: "红牛采集",
-      url: "https://www.hongniuzy2.com/api.php/provide/vod/from/hnm3u8/",
-      categories: ["动作片", "爱情片", "喜剧片", "科幻片", "恐怖片", "剧情片", "战争片", "动漫电影", "短剧", "国产剧", "欧美剧", "港澳剧", "韩剧", "日剧", "台湾剧", "泰剧", "动漫", "综艺", "纪录片", "体育赛事"],
-      search: true
-    }],
-    xlm3u8: [{
-      name: "新浪采集",
-      url: "https://api.xinlangapi.com/xinlangapi.php/provide/vod/from/xlm3u8/",
-      categories: ["动作片", "爱情片", "喜剧片", "科幻片", "恐怖片", "剧情片", "战争片", "动漫电影", "短剧", "大陆剧", "欧美剧", "港澳剧", "韩剧", "日剧", "台湾剧", "泰剧", "动漫", "综艺", "纪录片", "体育"],
-      search: true
-    }],
-    kuaikan: [{
-      name: "快看采集",
-      url: "https://kuaikan-api.com/api.php/provide/vod/from/kuaikan/",
-      categories: ["网络电影", "惊悚片", "犯罪片", "灾难片", "悬疑片", "爱情片", "喜剧片", "奇幻片", "恐怖片", "剧情片", "战争片", "动作片", "冒险片", "动画电影", "热门短剧", "国产剧", "欧美剧", "港台剧", "韩国剧", "日本剧", "台剧", "泰剧", "国产动漫", "日本动漫", "欧美动漫", "港台动漫", "韩国动漫", "国产综艺", "日本综艺", "港台综艺", "欧美综艺", "韩国综艺", "纪录片", "电影解说"],
-      search: true
-    }],
-    wjm3u8: [{
-      name: "无尽采集",
-      url: "https://api.wujinapi.me/api.php/provide/vod/from/wjm3u8/",
-      categories: ["动作片", "爱情片", "喜剧片", "科幻片", "恐怖片", "剧情片", "战争片", "悬疑片", "动画片", "犯罪片", "奇幻片", "邵氏电影", "短剧", "国产剧", "美国剧", "香港剧", "韩国剧", "日本剧", "台湾剧", "泰剧", "海外剧", "国产动漫", "日韩动漫", "欧美动漫", "大陆综艺", "日韩综艺", "港台综艺", "欧美综艺", "体育赛事", "影视解说"],
-      search: true
-    }]
+  y115: {
+    cookie: ""
   },
-  appys: {
-    jiageys: [{
-      name: "飞鸽影视",
-      url: "http://www.jiageys.top/api.php/app/",
-      // categories: ['国产剧', '香港剧', '韩国剧', '欧美剧', '台湾剧', '日本剧', '海外剧', '泰国剧', '短剧', '动作片', '喜剧片', '爱情片', '科幻片', '恐怖片', '剧情片', '战争片', '动漫片', '大陆综艺', '港台综艺', '日韩综艺', '欧美综艺', '国产动漫', '日韩动漫', '欧美动漫', '港台动漫', '海外动漫', '记录片'],                        
-      search: true
-      //搜索开关 true开 false关
-    }],
-    futv: [{
-      name: "腐宅影视",
-      url: "http://app.zhaifutvapp.com/ruifenglb_api.php/v1.vod",
-      // categories: ['国产剧', '香港剧', '韩国剧', '欧美剧', '台湾剧', '日本剧', '海外剧', '泰国剧', '短剧', '动作片', '喜剧片', '爱情片', '科幻片', '恐怖片', '剧情片', '战争片', '动漫片', '大陆综艺', '港台综艺', '日韩综艺', '欧美综艺', '国产动漫', '日韩动漫', '欧美动漫', '港台动漫', '海外动漫', '记录片'],                        
-      search: true
-      //搜索开关 true开 false关
-    }],
-    mjlnl: [{
-      name: "聚焦",
-      url: "https://www.mjlnl.cn/api.php/v1.vod",
-      // categories: ['国产剧', '香港剧', '韩国剧', '欧美剧', '台湾剧', '日本剧', '海外剧', '泰国剧', '短剧', '动作片', '喜剧片', '爱情片', '科幻片', '恐怖片', '剧情片', '战争片', '动漫片', '大陆综艺', '港台综艺', '日韩综艺', '欧美综艺', '国产动漫', '日韩动漫', '欧美动漫', '港台动漫', '海外动漫', '记录片'],                        
-      search: true
-      //搜索开关 true开 false关
-    }],
-    netflixdog: [{
-      name: "奈飞狗",
-      url: "https://netflixdog.club/api.php/app/",
-      // categories: ['国产剧', '香港剧', '韩国剧', '欧美剧', '台湾剧', '日本剧', '海外剧', '泰国剧', '短剧', '动作片', '喜剧片', '爱情片', '科幻片', '恐怖片', '剧情片', '战争片', '动漫片', '大陆综艺', '港台综艺', '日韩综艺', '欧美综艺', '国产动漫', '日韩动漫', '欧美动漫', '港台动漫', '海外动漫', '记录片'],                        
-      search: true
-      //搜索开关 true开 false关
-    }],
-    yingszj: [{
-      name: "鑫鑫影视",
-      url: "http://yingszj.xn--654a.cc/api.php/app/",
-      // categories: ['国产剧', '香港剧', '韩国剧', '欧美剧', '台湾剧', '日本剧', '海外剧', '泰国剧', '短剧', '动作片', '喜剧片', '爱情片', '科幻片', '恐怖片', '剧情片', '战争片', '动漫片', '大陆综艺', '港台综艺', '日韩综艺', '欧美综艺', '国产动漫', '日韩动漫', '欧美动漫', '港台动漫', '海外动漫', '记录片'],                        
-      search: true
-      //搜索开关 true开 false关
-    }],
-    ttmja: [{
-      name: "天天美剧",
-      url: "https://www.ttmja.com/api.php/app/",
-      // categories: ['国产剧', '香港剧', '韩国剧', '欧美剧', '台湾剧', '日本剧', '海外剧', '泰国剧', '短剧', '动作片', '喜剧片', '爱情片', '科幻片', '恐怖片', '剧情片', '战争片', '动漫片', '大陆综艺', '港台综艺', '日韩综艺', '欧美综艺', '国产动漫', '日韩动漫', '欧美动漫', '港台动漫', '海外动漫', '记录片'],                        
-      search: true
-      //搜索开关 true开 false关
-    }],
-    netfly: [{
-      name: "奈飞",
-      url: "https://www.netfly.tv/api.php/app/",
-      // categories: ['国产剧', '香港剧', '韩国剧', '欧美剧', '台湾剧', '日本剧', '海外剧', '泰国剧', '短剧', '动作片', '喜剧片', '爱情片', '科幻片', '恐怖片', '剧情片', '战争片', '动漫片', '大陆综艺', '港台综艺', '日韩综艺', '欧美综艺', '国产动漫', '日韩动漫', '欧美动漫', '港台动漫', '海外动漫', '记录片'],                        
-      search: true
-      //搜索开关 true开 false关
-    }]
+  baidu: {
+    cookie: ""
+  },
+  muou: {
+    url: ""
+  },
+  wogg: {
+    url: ""
+  },
+  leijing: {
+    url: ""
+  },
+  tgsou: {
+    tgPic: false,
+    count: 0,
+    url: "",
+    channelUsername: ""
+  },
+  tgchannel: {},
+  sites: {
+    list: []
+  },
+  pans: {
+    list: []
+  },
+  danmu: {
+    urls: [
+      { address: "https://danmuapi-ten-iota.vercel.app", name: "默认服务器" },
+      { address: "https://logdanmu.dpdns.org", name: "默认1" },
+      { address: "https://fjj0417.dpdns.org/87654321", name: "默认2" },
+      { address: "https://dm.stardm.us.kg:443/87654321", name: "默认3" },
+      { address: "https://danmu.14812910.xyz/87654321", name: "默认4" },
+      { address: "https://313236.xyz/87654321", name: "默认5" }
+    ],
+    autoPush: true
+  },
+  t4: {
+    list: [
+      {
+        name: "🔥欧美大秀",
+        address: "https://oumeidaxiu.liuxy01999.workers.dev/"
+      }
+    ]
+  },
+  cms: {
+    list: []
   },
   alist: [
     {
