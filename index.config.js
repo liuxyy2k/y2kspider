@@ -77,7 +77,7 @@ var index_config_default = {
   t4: {
     list: [
       {
-        name: "🔥欧美大秀",
+        name: "🎥欧美大秀",
         address: "https://oumeidaxiu.liuxy01999.workers.dev/"
       }
     ]
