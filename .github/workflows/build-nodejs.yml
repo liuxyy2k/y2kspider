@@ -1,1 +1,66 @@
+name: Build NodeJS
 
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      # 1. 拉取 y2kspider
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+
+      # 2. 拉取 nodejs 源码
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+        with:
+          repository: liuxyy2k/nodejs
+          path: source
+
+      # 3. 安装 Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: source/package-lock.json
+
+      # 4. 安装依赖
+      - name: Install dependencies
+        working-directory: source
+        run: npm ci
+
+      # 5. 构建
+      - name: Build
+        working-directory: source
+        run: npm run build
+
+      # 6. 把构建结果复制到 y2kspider
+      - name: Publish build files
+        run: |
+          set -e
+
+          cp source/dist/index.js index.js
+          cp source/dist/index.js.md5 index.js.md5
+          cp source/dist/index.config.js index.config.js
+          cp source/dist/index.config.js.md5 index.config.js.md5
+
+      # 7. 提交并推送
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add index.js index.js.md5 index.config.js index.config.js.md5
+
+          if git diff --cached --quiet; then
+            echo "No build changes to publish."
+          else
+            git commit -m "chore: update nodejs build"
+            git push origin main
+          fi
